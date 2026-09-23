@@ -1,0 +1,25 @@
+# Runtime and development dependencies for Python 3.11.
+# transformers and tokenizers are installed transitively by sentence-transformers.
+fastapi==0.115.6
+uvicorn==0.34.0
+sqlalchemy==2.0.36
+# SQLAlchemy's PostgreSQL driver for Render DATABASE_URL connections.
+psycopg[binary]==3.2.3
+pydantic==2.10.4
+pydantic-settings==2.7.1
+python-dotenv==1.0.1
+gitpython==3.1.44
+tree-sitter==0.20.4
+tree-sitter-languages==1.10.2
+chromadb==1.1.0
+sentence-transformers==3.3.1
+torch==2.2.2
+numpy==1.26.4
+httpx==0.28.1
+loguru==0.7.3
+pytest==8.3.4
+pytest-mock==3.14.0
+pytest-cov==6.0.0
+# google-genai SDK for Gemini embeddings (2026-09-18 current version)
+google-genai==1.0.0
+psycopg2-binary==2.9.13

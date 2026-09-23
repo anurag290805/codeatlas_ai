@@ -1,0 +1,157 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.secret
+*.secrets
+*.key
+*.pem
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.mypy_cache/
+.pyre/
+.ruff_cache/
+.hypothesis/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+pytestdebug.log
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+backend/venv/
+backend/.venv/
+frontend/venv/
+pip-wheel-metadata/
+
+# Packaging and build output
+build/
+dist/
+*.egg-info/
+.eggs/
+MANIFEST
+*.whl
+*.tar.gz
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Application logs and runtime files
+logs/
+*.log
+*.pid
+*.pid.lock
+*.sock
+tmp/
+temp/
+*.tmp
+
+# SQLite and local databases
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.sqlite3-journal
+data/
+backend/data/
+
+# Accidental/local copied repositories and unused design artifacts
+/backend/requests/
+/Logo.png
+/frontend/graph.json
+
+# Vector stores and embedding indexes
+chroma/
+chromadb/
+vector_store/
+vectorstore/
+embeddings/
+indexes/
+*.parquet
+
+# Machine-learning model and Hugging Face caches
+.cache/
+cache/
+model_cache/
+/models/
+checkpoints/
+sentence_transformers_data/
+transformers_cache/
+torch_cache/
+/.cache/
+/.huggingface/
+/.torch/
+/.nv/
+hf_cache/
+
+# Tree-sitter generated artifacts
+*.so
+languages.so
+tree_sitter_languages/
+
+# Docker local artifacts
+.docker/
+docker-data/
+docker-volumes/
+
+# Node and frontend tooling
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+.yarn/
+.pnp.*
+frontend/dist/
+frontend/build/
+
+# IDEs and editors
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.example.json
+.fleet/
+.project
+.pydevproject
+.settings/
+*.code-workspace
+
+# OS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.DocumentRevisions-V100
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Test and tooling artifacts
+.tox/
+.nox/
+.cache/
+*.prof
+*.py,cover
+nosetests.xml
+test-results/
+
+# Local configuration and generated documentation
+*.local
+*.override
+site/
+.mkdocs_cache/

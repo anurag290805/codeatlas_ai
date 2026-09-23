@@ -1,0 +1,51 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: codeatlas-ai-backend:local
+    init: true
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      APP_NAME: ${APP_NAME:-CodeAtlas AI}
+      APP_VERSION: ${APP_VERSION:-0.1.0}
+      ENVIRONMENT: ${ENVIRONMENT:-production}
+      DEBUG: ${DEBUG:-false}
+      HOST: 0.0.0.0
+      PORT: 8000
+      API_PREFIX: ${API_PREFIX:-/api}
+      DATABASE_URL: ${DATABASE_URL:-sqlite:////app/data/codeatlas.db}
+      CHROMA_PERSIST_DIRECTORY: ${CHROMA_PERSIST_DIRECTORY:-/app/data/chroma}
+      REPOSITORIES_DIR: ${REPOSITORIES_DIR:-/app/data/repositories}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      LOG_FILE: ${LOG_FILE:-/app/logs/app.log}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-BAAI/bge-small-en-v1.5}
+      EMBEDDING_PROVIDER: ${EMBEDDING_PROVIDER:-sentence_transformers}
+    volumes:
+      - codeatlas_data:/app/data
+      - codeatlas_logs:/app/logs
+      # Development-friendly source mount. Remove for an immutable release deployment.
+      - ./backend/app:/app/app:rw
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          python -c "import urllib.request;
+          response = urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5);
+          raise SystemExit(0 if response.status == 200 else 1)"
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  codeatlas_data:
+    name: codeatlas-ai-data
+  codeatlas_logs:
+    name: codeatlas-ai-logs

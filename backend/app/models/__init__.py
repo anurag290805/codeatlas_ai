@@ -1,0 +1,1 @@
+"""Pydantic schemas and database models used throughout the application."""
