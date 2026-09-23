@@ -22,7 +22,7 @@
 
 <div align="center">
 
-<img src="frontend/src/assets/hero.png" alt="CodeAtlas AI layered intelligence mark" width="220" />
+<img src="docs/readme/codeatlas-pipeline.svg" alt="CodeAtlas AI repository intelligence pipeline" width="900" />
 
 `repository` → `index` → `understand` → `explore` → `ask`
 
