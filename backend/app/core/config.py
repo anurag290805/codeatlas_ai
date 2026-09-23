@@ -46,6 +46,7 @@ class Settings(BaseSettings):
         default_factory=lambda: [
             "http://localhost:5173",
             "https://codeatlas-ai-frontend.vercel.app",
+            "https://codeatlas-dev.vercel.app",
         ]
     )
     cors_allow_credentials: bool = True

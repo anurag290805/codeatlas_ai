@@ -101,15 +101,16 @@ def test_configured_cors_origin_allows_request_and_preflight(monkeypatch) -> Non
         trusted_hosts=[],
     )
     monkeypatch.setattr(main, "get_settings", lambda: settings)
+    monkeypatch.setattr(main, "initialize_request_workspace", lambda _request: ("test-workspace", False))
     app = FastAPI()
-    app.get("/probe")(lambda: {"ok": True})
+    app.get("/api/repositories")(lambda: {"ok": True})
     main._register_middleware(app)
 
     with TestClient(app) as client:
-        response = client.get("/probe", headers={"Origin": "http://localhost:4173"})
+        response = client.get("/api/repositories", headers={"Origin": "http://localhost:4173"})
         assert response.headers["access-control-allow-origin"] == "http://localhost:4173"
         preflight = client.options(
-            "/probe",
+            "/api/repositories",
             headers={
                 "Origin": "http://localhost:4173",
                 "Access-Control-Request-Method": "GET",
@@ -118,8 +119,13 @@ def test_configured_cors_origin_allows_request_and_preflight(monkeypatch) -> Non
         assert preflight.status_code == 200
         assert preflight.headers["access-control-allow-origin"] == "http://localhost:4173"
 
-        rejected = client.get("/probe", headers={"Origin": "http://unconfigured.test"})
+        rejected = client.get("/api/repositories", headers={"Origin": "http://unconfigured.test"})
         assert "access-control-allow-origin" not in rejected.headers
+
+
+def test_production_frontend_origin_is_in_default_cors_allowlist() -> None:
+    settings = Settings(_env_file=None)
+    assert "https://codeatlas-dev.vercel.app" in settings.cors_allowed_origins
 
 
 class _GeminiClient:

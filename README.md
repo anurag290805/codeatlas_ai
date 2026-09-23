@@ -254,7 +254,7 @@ Vercel frontend → Render FastAPI backend → Supabase/PostgreSQL
 
 - `render.yaml` defines the backend service, its `backend` root, health check, and production secrets.
 - `vercel.json` routes `/api/*` to the backend service and the remaining paths to the Vite frontend.
-- Set `VITE_API_BASE_URL` to the deployed backend origin and set `CORS_ALLOWED_ORIGINS` to the exact frontend origin.
+- Set `VITE_API_BASE_URL=https://codeatlas-ai-o8ot.onrender.com` on Vercel. On Render, set `CORS_ALLOWED_ORIGINS=https://codeatlas-dev.vercel.app` (or include it in the comma-separated list alongside any retained local or legacy origins).
 - Hosted repository clones are a disposable working cache; database metadata and vector data are the durable parts of the deployment configuration.
 
 ## API surface
